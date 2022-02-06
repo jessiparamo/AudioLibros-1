@@ -92,7 +92,7 @@ public class    MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Hola v:",
+                Snackbar.make(view, "Aqui no hay nada :)",
                         Snackbar.LENGTH_LONG).setAction("Action", null).show();
             }
         });
@@ -201,7 +201,7 @@ public class    MainActivity extends AppCompatActivity
         SharedPreferences pref = getSharedPreferences(
                 "com.example.audiolibros_internal", MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
-        editor.putInt("ultimo", id);
+        editor.putInt("Ultimo", id);
         editor.commit();
     }
     public void mostrarElementos(boolean mostrar) {

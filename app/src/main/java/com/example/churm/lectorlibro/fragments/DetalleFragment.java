@@ -22,13 +22,13 @@ import com.example.churm.lectorlibro.Libro;
 import com.example.churm.lectorlibro.MainActivity;
 import com.example.churm.lectorlibro.MyService;
 import com.example.churm.lectorlibro.R;
-public class DetalleFragment extends Fragment implements
-        View.OnTouchListener{
+public class DetalleFragment extends Fragment implements View.OnTouchListener{
     public final String NotiChanelID = "audioLibros2";
     public static String ARG_ID_LIBRO = "id_libro";
-//    MediaPlayer mediaPlayer;
+
+
 //    MediaController mediaController;
-    MyService servicio ;
+    MyService servicio;
     boolean mBound = false;
     int libroID;
 
@@ -70,13 +70,12 @@ public class DetalleFragment extends Fragment implements
     }
 
     @Override public boolean onTouch(View vista, MotionEvent evento) {
-
         try {
             if (servicio.getMediaPlayer()!=null){
                 if (servicio.libroID != this.libroID){
                     if(libroID>=0){
                         NotificationCompat.Builder noti = new NotificationCompat.Builder(getActivity().getApplicationContext(),
-                                NotiChanelID).setContentTitle("AudioLibros").setContentText("Reproducionedo Audio").setPriority(NotificationCompat.PRIORITY_LOW);
+                                NotiChanelID).setContentTitle("AudioLibros").setContentText("Reproduciendo Audio").setPriority(NotificationCompat.PRIORITY_LOW);
                         Intent intent = new Intent(getActivity().getApplicationContext(),MyService.class);
                         servicio.startForeground(0,noti.build());
                         Libro libro = ((Aplicacion) getActivity().getApplication())

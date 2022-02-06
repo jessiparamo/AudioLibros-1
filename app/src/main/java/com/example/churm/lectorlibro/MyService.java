@@ -1,5 +1,4 @@
 package com.example.churm.lectorlibro;
-
 import android.app.Activity;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -24,6 +23,7 @@ import android.widget.Toast;
 import java.io.IOException;
 import java.util.Random;
 
+//jessica SP
 public class MyService extends Service implements MediaPlayer.OnPreparedListener, MediaController.MediaPlayerControl {
     public MyService() {
 
@@ -44,11 +44,10 @@ public class MyService extends Service implements MediaPlayer.OnPreparedListener
         this.view= view;
         this.libroID=idLibro;
 
-
-
         if (mediaPlayer != null){
             mediaPlayer.release();
         }
+        
         mediaPlayer = new MediaPlayer();
         mediaPlayer.setOnPreparedListener(this);
         mediaController = new MediaController(activity);
@@ -60,6 +59,9 @@ public class MyService extends Service implements MediaPlayer.OnPreparedListener
             Log.e("Audiolibros", "ERROR: No se puede reproducir "+audio,e);
         }
     }
+
+
+
 
     @Override
     public void onPrepared(MediaPlayer mp) {
@@ -78,6 +80,10 @@ public class MyService extends Service implements MediaPlayer.OnPreparedListener
 
 
     }
+
+
+
+
     String channel_name="audioLibrosChannel";
     String channel_id = "AudioLibrosForegroundService";
 
@@ -96,6 +102,8 @@ public class MyService extends Service implements MediaPlayer.OnPreparedListener
             notificationManager.createNotificationChannel(channel);
         }
     }
+
+
 
     public void notificar(){
 
@@ -119,6 +127,9 @@ public class MyService extends Service implements MediaPlayer.OnPreparedListener
         notificationManagerCompat.notify(354,builder.build());
 
     }
+
+
+
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
@@ -127,11 +138,15 @@ public class MyService extends Service implements MediaPlayer.OnPreparedListener
         return super.onStartCommand(intent, flags, startId);
     }
 
+
+
     @Override
     public void onStart(Intent intent, int startId) {
         Toast.makeText(activity, "onstart", Toast.LENGTH_SHORT).show();
         super.onStart(intent, startId);
     }
+
+
 
     @Override
     public ComponentName startService(Intent service) {
@@ -145,7 +160,6 @@ public class MyService extends Service implements MediaPlayer.OnPreparedListener
         mediaController.hide();
         try {
             mediaPlayer.pause();
-//            mediaPlayer.release();
         } catch (Exception e) {
             Log.d("Audiolibros", "Error en mediaPlayer.stop()");
         }
@@ -224,13 +238,12 @@ public class MyService extends Service implements MediaPlayer.OnPreparedListener
         return 0;
     }
 
-    //    Clase interfaz para la conexion del servicio con el activity
+
     public class miBinder extends Binder{
         public MyService getService(){
             return MyService.this;
         }
     }
-
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -240,9 +253,8 @@ public class MyService extends Service implements MediaPlayer.OnPreparedListener
 
     public void showMedia(){
         mediaController.show();
-
     }
     public int getRandomNumber(){
-        return random.nextInt(100);
+        return random.nextInt(10);
     }
 }
